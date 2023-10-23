@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/pickPlayersFragment"
+        android:title="@string/players"
+        android:icon="@drawable/baseline_face_24"/>
+    <item
+        android:id="@+id/gameFragment"
+        android:title="@string/game"
+        android:icon="@drawable/mdi_dice_6_black_24dp"/>
+
+</menu>

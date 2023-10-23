@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+<!--    <data>-->
+<!--        <import type="android.view.View" />-->
+<!--        <variable-->
+<!--            name="checkboxHidden"-->
+<!--            type="Boolean" />-->
+<!--        <variable-->
+<!--            name="switchHidden"-->
+<!--            type="Boolean" />-->
+
+<!--    </data>-->
+
+    <data>
+        <import type="android.view.View" />
+
+		<import type="com.example.pennydrop.game.AI" />
+
+         	  <variable
+         	      name="player"
+         	      type="com.example.pennydrop.types.NewPlayer" />
+         	</data>
+
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <CheckBox
+        android:id="@+id/checkbox_player_active"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checked="@={player.isIncluded}"
+        android:visibility="@{player.canBeRemoved ? View.VISIBLE : View.INVISIBLE}"
+        app:layout_constraintBottom_toBottomOf="@id/edit_text_player_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/edit_text_player_name"/>
+
+<!--    android:visibility="@{checkboxHidden ? View.VISIBLE : View.INVISIBLE}"-->
+
+<!--    The "android:entries" attribute will allow us to bind an object as the
+list of items in the <Spinner> (instead of using a SpinnerAdapter).-->
+
+    <EditText
+        android:id="@+id/edit_text_player_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="@={player.playerName}"
+        android:hint="@string/player_name"
+        android:inputType="textPersonName"
+		android:enabled="@{player.isIncluded}"
+		android:visibility="@{player.isHuman ? View.VISIBLE : View.INVISIBLE}"
+        app:layout_constraintEnd_toStartOf="@id/switch_player_type"
+        app:layout_constraintStart_toEndOf="@id/checkbox_player_active"
+        app:layout_constraintTop_toTopOf="parent"
+        >
+	</EditText>
+        <Spinner
+         	  android:id="@+id/spinner_ai_name"
+         	  android:layout_width="0dp"
+         	  android:layout_height="wrap_content"
+         	  android:entries="@{AI.getBasicAI()}"
+			  android:enabled="@{player.isIncluded}"
+			  android:selectedItemPosition="@={player.selectedAIPosition}"
+         	  android:visibility="@{player.isHuman ? View.INVISIBLE : View.VISIBLE}"
+         	  app:layout_constraintBottom_toBottomOf="@id/edit_text_player_name"
+         	  app:layout_constraintEnd_toStartOf="@id/switch_player_type"
+         	  app:layout_constraintStart_toEndOf="@id/checkbox_player_active"
+         	  app:layout_constraintTop_toTopOf="@id/edit_text_player_name"/>
+
+
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/switch_player_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checked="@={player.isHuman}"
+		android:enabled="@{player.isIncluded}"
+		android:thumb="@drawable/ai_toggle_bg"
+		app:thumbTint="@color/ai_toggle_color"
+		app:trackTint="@color/ai_toggle_track_color"
+		android:visibility="@{player.canBeToggled ? View.VISIBLE : View.INVISIBLE}"
+		app:layout_constraintBottom_toBottomOf="@id/edit_text_player_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/edit_text_player_name"/>
+
+<!--	android:thumbTint="@color/holo_blue_bright"-->
+<!--    android:visibility="@{switchHidden ? View.VISIBLE : View.INVISIBLE}"-->
+<!--	android:thumbTint changes the color of the “ball” on the <SwitchCompat> tag,
+while android:trackTint changes the color of the track the thumb moves along-->
+    
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
