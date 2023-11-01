@@ -15,7 +15,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.pennydrop"
-        minSdk = 24
+        minSdk = 22
         targetSdk = 33
         versionCode = 1
         versionName = "1.0"
