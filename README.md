@@ -116,4 +116,21 @@ III) Binding Data with ViewModels:
 51) Replace the slotNum <variable> with slot.number in layout_coin_slot.xml, and use slot.lastRolled to change textColor accordingly. 
 52) Create Binding Adapters along with package-level functions to be used for the app:isHidden property in coinImageCoinSlot <ImageView> of the layout_coin_slot.xml file.
 
+INCORPORATING FUNCTIONALITY INTO THE GAME USING CONDITIONAL GAME LOGIC:
+    
+53) Create the GameHandler object in game package, consisting of roll() , pass(), rollDie() and nextPlayer() stateless functions that will take care of rolling and passing, then return a result to the GameViewModel.
+54) Create the TurnResult data class (to be later used by the GameViewModel) along with the TurnEnd enum class.
+55) Handle User Rolls by adding the rollDie function to GameHandler.kt and incorporating it into the roll function.
+56) Add the penniesLeft() function as a Helper Method to Player Class.
+57) Complete the logic for when the Slot is already rolled inside the if...else block.
+58) Add the nextPlayer function to  GameHandler.kt to grab the Next Player.
+59) Handle an Open Slot by using the penniesLeft() function inside the roll() function to see if the player has won.
+60) Complete the logic to Handle Users Passing.
+61) Start a Game in  GameViewModel by adding clear() function to the Slot class and the startGame function plus the notifyChange() and generateCurrentStandings() functions to  GameViewModel.
+62) Complete the GameViewModel Functions: roll() and pass() inside GameViewModel.
+63) Add updateFromGameHandler​ and updateSlots in GameViewModel to update the UI.
+64) Create Turn Summary Text using generateTurnText function in GameViewModel.
+65) Handle Multiple Conditionals with when Statements in the generateTurnText function.
+66) Handle AI Turns using Coroutines via the playAITurn() function and add rollAgain() as First-Class Function to AI data class.
+
 References: https://learning-oreilly-com.ezproxy.torontopubliclibrary.ca/library/view/kotlin-and-android/9781680508673/f_0005.xhtml
